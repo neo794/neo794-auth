@@ -1,0 +1,22 @@
+{
+    "name": "@nfjs/auth",
+    "version": "1.0.0",
+    "description": "Authorization module",
+    "license": "MIT",
+    "type": "module",
+    "main": "index.js",
+    "repository": {
+        "url": "https://github.com/neo794/pf-auth.git"
+    },
+    "author": "Artem Morozov <neo794@yandex.ru>",
+    "dependencies": {
+        "session-file-store": "^1.2.0",
+        "redis": "^3.1.2",
+        "connect-redis": "^6.0.0",
+        "express-session": "^1.15.6"
+    },
+    "exports": {
+        ".": "./index.js",
+        "./nf-module.js": "./nf-module.js"
+    }
+}
