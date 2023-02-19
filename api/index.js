@@ -34,10 +34,15 @@ class NFAuth {
     }
 
     static async checkVerify(context) {
-        const key_token = context.session.get('auth.key');
-        const user_id = context.session.get('auth.user_id');
-        const data = await dbapi.query(`select pf.f4users8check_session(:user_id,:key_token) as res`, { user_id,key_token }, { context: context });
-        return data.data[0].res;
+        try {
+            const key_token = context.session.get('auth.key');
+            const user_id = context.session.get('auth.user_id');
+            const data = await dbapi.query(`select pf.f4users8check_session(:user_id,:key_token) as res`, { user_id, key_token }, { context: context });
+            context.session.assign('auth',{ user_settings: data.data[0].res.settings });
+            return data.data[0].res.res;
+        } catch (e) {
+            return false;
+        }
     }
 
     static async authMiddleware(context) {

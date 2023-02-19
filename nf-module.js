@@ -9,9 +9,6 @@ import connect_redis from "connect-redis";
 const RedisStore = connect_redis(express_session);
 
 async function init() {
-
-    // TODO: используется для авторизации в экшене, переписать
-    // common.setPath(nf, 'sandbox.auth', auth);
     api.setAppRouteMid('action', NFAuth.requestCheck, 30);
     api.setAppRouteMid('dataset', NFAuth.requestCheck, 30);
     web.registerMiddleware('auth', NFAuth.authMiddleware);
