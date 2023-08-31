@@ -8,6 +8,9 @@
     "repository": {
         "url": "https://github.com/neo794/pf-auth.git"
     },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
+    },
     "author": "Artem Morozov <neo794@yandex.ru>",
     "dependencies": {
         "session-file-store": "^1.2.0",
