@@ -1,6 +1,6 @@
 import { api, common, config } from "@nfjs/core"
 import { web } from "@nfjs/back";
-import { NFAuth } from "./index.js";
+import { pfSingleAuth } from "./index.js";
 import session from "./middlewares/session.js";
 import express_session from 'express-session';
 import session_file_store from "session-file-store";
@@ -9,10 +9,10 @@ import connect_redis from "connect-redis";
 const RedisStore = connect_redis(express_session);
 
 async function init() {
-    api.setAppRouteMid('action', NFAuth.requestCheck, 30);
-    api.setAppRouteMid('dataset', NFAuth.requestCheck, 30);
-    web.registerMiddleware('auth', NFAuth.authMiddleware);
-    const moduleConfig = common.getPath(config, '@nfjs/auth') || {};
+    api.setAppRouteMid('action', pfSingleAuth.requestCheck, 30);
+    api.setAppRouteMid('dataset', pfSingleAuth.requestCheck, 30);
+    web.registerMiddleware('auth', pfSingleAuth.authMiddleware);
+    const moduleConfig = common.getPath(config, '@neo794/auth') || {};
     moduleConfig.session = moduleConfig.session || {};
 
     let { secure, sameSite, maxAge } = moduleConfig.session;

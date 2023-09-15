@@ -1,6 +1,6 @@
-import NFAuth from "./api/index.js";
+import pfSingleAuth from "./api/index.js";
 
-const auth = new NFAuth();
+const auth = new pfSingleAuth();
 const authProviders = {};
 
-export {auth, authProviders, NFAuth};
+export {auth, authProviders, pfSingleAuth};

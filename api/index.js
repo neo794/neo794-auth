@@ -2,7 +2,7 @@ import { common } from "@nfjs/core";
 import { authProviders } from "../index.js";
 import { dbapi } from "@nfjs/back";
 
-class NFAuth {
+class pfSingleAuth {
     async login(context) {
         try {
             const data = await dbapi.query(`select pf.f4users8auth(:ps_data) as res`, { ps_data: context.body.args }, { context: context });
@@ -46,7 +46,7 @@ class NFAuth {
     }
 
     static async authMiddleware(context) {
-        const checkData = await NFAuth.checkVerify(context);
+        const checkData = await pfSingleAuth.checkVerify(context);
         if (checkData) {
             return true;
         } else {
@@ -58,4 +58,4 @@ class NFAuth {
     }
 }
 
-export default NFAuth;
+export default pfSingleAuth;
